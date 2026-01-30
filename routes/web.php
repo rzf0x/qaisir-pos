@@ -55,6 +55,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/transaksi/baru', [TransactionController::class, 'create'])->name('transactions.create');
         Route::post('/transaksi', [TransactionController::class, 'store'])->name('transactions.store');
         Route::get('/transaksi/{id}/sukses', [TransactionController::class, 'success'])->name('transactions.success');
+        Route::get('/transaksi/{id}/edit', [TransactionController::class, 'edit'])->name('transactions.edit');
+        Route::put('/transaksi/{id}', [TransactionController::class, 'update'])->name('transactions.update');
+        Route::delete('/transaksi/{id}', [TransactionController::class, 'destroy'])->name('transactions.destroy');
     });
 
     // Laundry Services (CRUD)

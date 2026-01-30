@@ -1,13 +1,19 @@
 <x-app-layout>
     <div x-data="transactionForm()" class="max-w-lg mx-auto">
         <!-- Header -->
-        <div class="mb-6">
-            <h2 class="text-xl font-bold text-slate-800">Transaksi Baru</h2>
-            <p class="text-sm text-gray-500">Catat laundry pelanggan</p>
+        <div class="mb-6 flex items-center justify-between">
+            <div>
+                <h2 class="text-xl font-bold text-slate-800">Edit Transaksi</h2>
+                <p class="text-sm text-gray-500">Perbarui data transaksi</p>
+            </div>
+            <a href="{{ route('transactions.index') }}" class="text-slate-500 hover:text-slate-800">
+                Kembali
+            </a>
         </div>
 
-        <form @submit.prevent="submitForm" action="{{ route('transactions.store') }}" method="POST">
+        <form @submit.prevent="submitForm" action="{{ route('transactions.update', $transaction->id) }}" method="POST">
             @csrf
+            @method('PUT')
 
             <!-- Customer Name (Optional) -->
             <div class="mb-4">
@@ -70,21 +76,11 @@
                 @error('weight')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
-
-                <!-- Quick Weight Buttons -->
-                <div class="flex flex-wrap gap-2 mt-3">
-                    @foreach ([1, 2, 3, 5, 10] as $kg)
-                        <button type="button" @click="setWeight({{ $kg }})"
-                            class="px-4 py-2 rounded-lg bg-slate-100 text-slate-700 text-sm font-medium hover:bg-slate-200 transition-colors">
-                            {{ $kg }} kg
-                        </button>
-                    @endforeach
-                </div>
             </div>
 
             <!-- Total Display -->
             <div class="mb-4 p-4 rounded-xl bg-gradient-to-r from-slate-100 to-slate-50 border border-slate-200">
-                <p class="text-sm text-gray-600 mb-1">Total Pembayaran</p>
+                <p class="text-sm text-gray-600 mb-1">Total Pembayaran Baru</p>
                 <p class="text-3xl font-bold text-slate-800" x-text="formattedTotal">Rp 0</p>
             </div>
 
@@ -94,7 +90,7 @@
                 <div class="grid grid-cols-2 gap-3">
                     <label class="relative">
                         <input type="radio" name="payment_method" value="cash" x-model="paymentMethod"
-                            class="sr-only peer" checked>
+                            class="sr-only peer">
                         <div
                             class="p-4 rounded-xl border-2 border-gray-200 cursor-pointer transition-all text-center
                                     peer-checked:border-green-500 peer-checked:bg-green-50
@@ -146,9 +142,10 @@
                 class="w-full py-4 rounded-2xl text-white font-bold text-lg shadow-lg transform transition-all duration-200">
                 <span x-show="!loading" class="flex items-center justify-center space-x-2">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                     </svg>
-                    <span>Simpan Transaksi</span>
+                    <span>Update Transaksi</span>
                 </span>
                 <span x-show="loading" class="flex items-center justify-center space-x-2">
                     <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -165,15 +162,23 @@
         </form>
     </div>
 
+    <!-- Init Data -->
+    @php
+        // Find current service to get price
+        $currentService = $services->firstWhere('name', $transaction->service_name);
+        $currentPrice = $currentService ? $currentService->price_per_kg : $transaction->price_per_kg;
+        $currentServiceId = $currentService ? $currentService->id : null;
+    @endphp
+
     <script>
         function transactionForm() {
             return {
-                customerName: '',
-                selectedService: null,
-                pricePerKg: 0,
-                weight: '',
-                paymentMethod: 'cash',
-                notes: '',
+                customerName: '{{ $transaction->customer_name }}',
+                selectedService: {{ $currentServiceId ?? 'null' }},
+                pricePerKg: {{ $currentPrice }},
+                weight: {{ $transaction->weight }},
+                paymentMethod: '{{ $transaction->payment_method }}',
+                notes: '{{ $transaction->notes }}',
                 loading: false,
 
                 get total() {
@@ -191,10 +196,6 @@
 
                 updatePrice(price) {
                     this.pricePerKg = price;
-                },
-
-                setWeight(kg) {
-                    this.weight = kg;
                 },
 
                 calculateTotal() {
