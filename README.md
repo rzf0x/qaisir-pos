@@ -1,59 +1,327 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# QAISIR - POS Laundry Kiloan untuk UMKM Indonesia
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <strong>Kasir laundry simpel yang bikin owner tau uang masuk & omzet harian tanpa ribet.</strong>
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 Tentang QAISIR
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+QAISIR adalah aplikasi kasir (POS) yang dirancang khusus untuk laundry kiloan UMKM di Indonesia. Fokus utama aplikasi ini adalah:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Simpel** - Tidak ada fitur yang berlebihan
+- **Cepat** - Input transaksi dalam hitungan detik
+- **Jelas** - Lihat omzet harian dalam sekilas tanpa istilah akuntansi ribet
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ✨ Fitur Utama
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. 📊 Dashboard
 
-## Laravel Sponsors
+- Lihat **Uang Masuk Hari Ini** dengan jelas
+- **Jumlah Transaksi** hari ini
+- **Tunai Diterima** hari ini
+- Transaksi terbaru
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 2. ➕ Transaksi Cepat
 
-### Premium Partners
+- Pilih layanan (Cuci, Cuci + Setrika, dll)
+- Input berat (kg)
+- Pilih metode pembayaran (Tunai/QR)
+- Total otomatis dihitung
+- Simpan dalam < 1 detik
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 3. 📈 Laporan Usaha
 
-## Contributing
+- Laporan Hari Ini
+- Laporan 7 Hari Terakhir
+- Laporan Bulan Ini
+- Ringkasan harian
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 4. 🧺 Kelola Layanan
 
-## Code of Conduct
+- Tambah layanan baru
+- Edit harga per kg
+- Aktifkan/nonaktifkan layanan
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 5. 🔐 Autentikasi
 
-## Security Vulnerabilities
+- Login dengan email & password
+- 7 hari masa uji coba gratis
+- Sistem langganan bulanan
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## 🛠️ Tech Stack
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+| Layer      | Teknologi       |
+| ---------- | --------------- |
+| Backend    | Laravel 11      |
+| PHP        | 8.2+            |
+| Database   | MySQL / MariaDB |
+| Auth       | Laravel Breeze  |
+| Frontend   | Blade Templates |
+| Styling    | Tailwind CSS    |
+| JavaScript | Alpine.js       |
+| Design     | Mobile-first UI |
+
+---
+
+## 📦 Instalasi
+
+### Prasyarat
+
+- PHP 8.2+
+- Composer
+- Node.js & NPM
+- MySQL / MariaDB
+
+### Langkah Instalasi
+
+1. **Clone repository**
+
+    ```bash
+    git clone <repository-url>
+    cd qaisir-pos
+    ```
+
+2. **Install dependencies**
+
+    ```bash
+    composer install
+    npm install
+    ```
+
+3. **Setup environment**
+
+    ```bash
+    cp .env.example .env
+    php artisan key:generate
+    ```
+
+4. **Konfigurasi database** di file `.env`
+
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE=qaisir_pos
+    DB_USERNAME=root
+    DB_PASSWORD=
+    ```
+
+5. **Jalankan migrasi**
+
+    ```bash
+    php artisan migrate
+    ```
+
+6. **Build assets**
+
+    ```bash
+    npm run build
+    ```
+
+7. **Jalankan server**
+
+    ```bash
+    php artisan serve
+    ```
+
+8. **Akses aplikasi**
+   Buka browser dan akses: `http://127.0.0.1:8000`
+
+---
+
+## 🎮 Demo Account
+
+Setelah menjalankan seeder, Anda dapat login dengan:
+
+| Field    | Value             |
+| -------- | ----------------- |
+| Email    | `demo@qaisir.com` |
+| Password | `password123`     |
+
+Untuk membuat akun demo:
+
+```bash
+php artisan db:seed
+```
+
+---
+
+## 📁 Struktur Project
+
+```
+qaisir-pos/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── DashboardController.php
+│   │   │   ├── TransactionController.php
+│   │   │   ├── LaundryServiceController.php
+│   │   │   ├── ReportController.php
+│   │   │   └── SubscriptionController.php
+│   │   └── Middleware/
+│   │       └── CheckSubscription.php
+│   ├── Models/
+│   │   ├── User.php
+│   │   ├── LaundryService.php
+│   │   ├── Transaction.php
+│   │   ├── DailySummary.php
+│   │   └── Subscription.php
+│   ├── Services/
+│   │   ├── TransactionService.php
+│   │   ├── LaundryServiceService.php
+│   │   └── SubscriptionService.php
+│   └── Listeners/
+│       └── SetupNewUser.php
+├── database/
+│   └── migrations/
+│       ├── create_laundry_services_table.php
+│       ├── create_transactions_table.php
+│       ├── create_daily_summaries_table.php
+│       └── create_subscriptions_table.php
+├── resources/
+│   └── views/
+│       ├── layouts/
+│       │   └── app.blade.php
+│       ├── dashboard.blade.php
+│       ├── welcome.blade.php
+│       ├── transactions/
+│       │   ├── create.blade.php
+│       │   ├── index.blade.php
+│       │   └── success.blade.php
+│       ├── services/
+│       │   ├── index.blade.php
+│       │   ├── create.blade.php
+│       │   └── edit.blade.php
+│       ├── reports/
+│       │   └── index.blade.php
+│       └── subscription/
+│           ├── status.blade.php
+│           └── expired.blade.php
+└── routes/
+    └── web.php
+```
+
+---
+
+## 🗄️ Database Schema
+
+### users
+
+| Column   | Type   | Description       |
+| -------- | ------ | ----------------- |
+| id       | bigint | Primary key       |
+| name     | string | Nama pengguna     |
+| email    | string | Email (unique)    |
+| password | string | Password (hashed) |
+
+### laundry_services
+
+| Column       | Type    | Description          |
+| ------------ | ------- | -------------------- |
+| id           | bigint  | Primary key          |
+| user_id      | bigint  | Foreign key ke users |
+| name         | string  | Nama layanan         |
+| price_per_kg | decimal | Harga per kg         |
+| is_active    | boolean | Status aktif         |
+
+### transactions
+
+| Column         | Type              | Description                 |
+| -------------- | ----------------- | --------------------------- |
+| id             | bigint            | Primary key                 |
+| user_id        | bigint            | Foreign key ke users        |
+| customer_name  | string (nullable) | Nama pelanggan              |
+| service_name   | string            | Nama layanan saat transaksi |
+| weight         | decimal           | Berat dalam kg              |
+| price_per_kg   | decimal           | Harga per kg saat transaksi |
+| total          | decimal           | Total harga                 |
+| payment_method | enum              | 'cash' atau 'qr'            |
+| notes          | text (nullable)   | Catatan                     |
+| created_at     | timestamp         | Waktu transaksi             |
+
+### daily_summaries
+
+| Column             | Type    | Description            |
+| ------------------ | ------- | ---------------------- |
+| id                 | bigint  | Primary key            |
+| user_id            | bigint  | Foreign key ke users   |
+| date               | date    | Tanggal                |
+| total_transactions | integer | Jumlah transaksi       |
+| total_income       | decimal | Total pendapatan       |
+| cash_income        | decimal | Pendapatan tunai       |
+| qr_income          | decimal | Pendapatan QR/transfer |
+
+### subscriptions
+
+| Column        | Type      | Description                   |
+| ------------- | --------- | ----------------------------- |
+| id            | bigint    | Primary key                   |
+| user_id       | bigint    | Foreign key ke users (unique) |
+| trial_ends_at | timestamp | Tanggal akhir uji coba        |
+| expires_at    | timestamp | Tanggal berakhir langganan    |
+| status        | enum      | 'trial', 'active', 'expired'  |
+
+---
+
+## 💰 Model Bisnis
+
+| Item              | Harga             |
+| ----------------- | ----------------- |
+| Uji Coba          | 7 hari GRATIS     |
+| Langganan Bulanan | Rp 25.000 / bulan |
+
+---
+
+## 🚀 Alur Pengguna
+
+1. **Register** → User mendaftar dengan email & password
+2. **Auto Setup** → Sistem membuat:
+    - Subscription trial 7 hari
+    - 3 layanan default (Cuci Kering, Cuci Setrika, Setrika Saja)
+3. **Dashboard** → User melihat ringkasan harian
+4. **Transaksi** → User input transaksi laundry
+5. **Laporan** → User lihat laporan usaha
+
+---
+
+## 📱 UX Design Principles
+
+✅ Mobile-first layout
+✅ Tombol besar, mudah diklik
+✅ Maksimal 3 aksi per layar
+✅ Angka & mata uang jelas (IDR)
+✅ Bahasa Indonesia sederhana
+✅ Tidak ada istilah akuntansi ribet
+✅ Fast interaction (< 5 klik per transaksi)
+
+---
+
+## 🧪 Testing
+
+```bash
+php artisan test
+```
+
+---
+
+## 📝 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+---
+
+## 👨‍💻 Author
+
+Dibuat dengan ❤️ untuk UMKM Indonesia.
+
+---
+
+## 🆘 Support
+
+Untuk bantuan atau pertanyaan, hubungi via WhatsApp atau email.
